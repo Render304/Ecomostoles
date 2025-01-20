@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Móstoles: climate change</title>
+    <title>Móstoles: Climate Change</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        a-scene { height: 100vh; }
+    </style>
 </head>
 <body>
     <a-scene>
@@ -14,24 +18,31 @@
             <a-asset-item id="museo-glb" src="museo.glb"></a-asset-item>
         </a-assets>
 
+        <!-- Agregar cielo para mejorar la visualización -->
+        <a-sky color="#87CEEB"></a-sky>
 
-        <!-- Modelo 3D del museo y objetos internos -->
-        <a-entity gltf-model="#museo-glb" scale="10 10 10">
-            <!-- Luz ambiental -->
-            <a-light light="type: ambient; color: #FFFFFF; intensity: 0.35;"></a-light>
-            
-            <!-- Cámara dentro del museo con controles WASD -->
-            <a-entity camera look-controls wasd-controls="acceleration: 125" position="0 1.6 5"></a-entity>
+        <!-- Suelo dentro de la escena para proporcionar una base sólida -->
+        <a-plane rotation="-90 0 0" width="500" height="500" color="#8B4513" position="0 0 0" receive-shadow></a-plane>
 
-            <!-- Luz direccional -->
-            <a-light light="type: directional; color: #FFFFFF; intensity: 1; position: 0 10 0; rotation: -45 0 0;"></a-light>
+        <!-- Modelo 3D del museo -->
+        <a-entity gltf-model="#museo-glb" scale="10 10 10" position="0 0 -50" shadow="cast: true; receive: true">
+            <!-- Luz ambiental suave para iluminar uniformemente -->
+            <a-light light="type: ambient; color: #FFFFFF; intensity: 0.4;" position="0 10 0"></a-light>
 
-            <!-- Luces puntuales -->
-            <a-light light="type: point; color: #FFFFFF; intensity: 0.5; position: 0 5 0; distance: 500;"></a-light>
-            <a-light light="type: point; color: #FFFFFF; intensity: 0.5; position: 0 5 0; distance: 400;"></a-light>
-            <a-light light="type: point; color: #FFFFFF; intensity: 0.5; position: -5 0 0; distance: 400;"></a-light>
-            <a-light light="type: point; color: #FFFFFF; intensity: 0.5; position: 0 5 -0; distance: 300;"></a-light>
+            <!-- Luz direccional para crear sombras y resaltar detalles del museo -->
+            <a-light light="type: directional; color: #FFFFFF; intensity: 0.8; position: 0 10 0; rotation: -45 45 0;" cast-shadow="true"></a-light>
+
+            <!-- Luces puntuales para dar detalles de iluminación dentro del museo -->
+            <a-light light="type: point; color: #FFFFFF; intensity: 0.5; position: 0 3 -5; distance: 10;" cast-shadow="true"></a-light>
+            <a-light light="type: point; color: #FFFFFF; intensity: 0.5; position: 5 3 -5; distance: 10;" cast-shadow="true"></a-light>
+            <a-light light="type: point; color: #FFFFFF; intensity: 0.5; position: -5 3 -5; distance: 10;" cast-shadow="true"></a-light>
         </a-entity>
+
+        <!-- Cámara con controles WASD -->
+        <a-entity camera look-controls wasd-controls="acceleration: 125" position="0 1.6 5"></a-entity>
+
+        <!-- Añadir sombras a la escena -->
+        <a-light light="type: ambient; color: #FFFFFF; intensity: 0.2;" position="0 10 0"></a-light>
     </a-scene>
 </body>
 </html>
