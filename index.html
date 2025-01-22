@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Móstoles: climate change</title>
+    <title>Móstoles: Climate Change</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
 </head>
@@ -14,23 +14,29 @@
             <a-asset-item id="museo-glb" src="museo.glb"></a-asset-item>
         </a-assets>
 
-        <!-- Modelo 3D del museo y objetos internos -->
-        <a-entity gltf-model="#museo-glb" scale="500 500 500">
-            <!-- Luz ambiental con intensidad baja para evitar sobreiluminar las paredes -->
+        <!-- Modelo 3D del museo -->
+        <a-entity gltf-model="#museo-glb" scale="500 500 500" position="0 0 0">
+            <!-- Luz ambiental -->
             <a-light type="ambient" color="#FFFFFF" intensity="0.35"></a-light>
             
-          <!-- Cámara dentro del museo con controles de mira y controles WASD -->
-            <a-entity camera look-controls wasd-controls="acceleration: 150" position="0 0 0"></a-entity>
+            <!-- Cámara dentro del museo con controles WASD ajustados y colisión -->
+            <a-entity camera look-controls wasd-controls="acceleration: 150; speed: 5" position="0 0 10" 
+                      collision="objects: .wall"></a-entity>
 
-            <!-- Luz direccional baja para iluminar el suelo sin afectar mucho a las paredes -->
-            <a-light type="directional" color="#FFFFFF" intensity="1" position="0 10 0" rotation="-45 0 0"></a-light>
+            <!-- Luz direccional -->
+            <a-light type="directional" color="#FFFFFF" intensity="0.8" position="10 10 10" rotation="-45 45 0"></a-light>
 
-            <!-- Luces puntuales ajustadas para iluminar el suelo dentro del museo -->
+            <!-- Luces puntuales ajustadas -->
             <a-light type="point" color="#FFFFFF" intensity="0.5" position="0 5 0" distance="500"></a-light>
-            <a-light type="point" color="#FFFFFF" intensity="0.5" position="0 5 0" distance="400"></a-light>
-            <a-light type="point" color="#FFFFFF" intensity="0.5" position="- 5 0" distance="400"></a-light>
-            <a-light type="point" color="#FFFFFF" intensity="0.5" position="0 5 -0" distance="300"></a-light>
+            <a-light type="point" color="#FFFFFF" intensity="0.5" position="5 5 0" distance="400"></a-light>
+            <a-light type="point" color="#FFFFFF" intensity="0.5" position="0 5 -5" distance="300"></a-light>
         </a-entity>
+
+        <!-- Paredes del museo (agregadas para evitar traspasar) -->
+        <a-box position="0 0 0" width="50" height="10" depth="1" color="#ff0000" class="wall"></a-box>
+        <a-box position="0 0 -50" width="50" height="10" depth="1" color="#ff0000" class="wall"></a-box>
+        <a-box position="25 0 -25" width="1" height="10" depth="50" color="#ff0000" class="wall"></a-box>
+        <a-box position="-25 0 -25" width="1" height="10" depth="50" color="#ff0000" class="wall"></a-box>
     </a-scene>
 </body>
 </html>
