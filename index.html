@@ -12,8 +12,8 @@
     <a-scene physics="debug: true">
         <!-- Carga de modelos -->
         <a-assets>
-            <!-- Asegúrate de tener el archivo GLB o OBJ de la cabina -->
-            <a-asset-item id="cabina-telefonica" src="cabina.glb"></a-asset-item>
+            <!-- Aquí estamos cargando un archivo .glb que debería representar la cabina -->
+            <a-asset-item id="cabina-telefonica" src="https://cdn.jsdelivr.net/gh/aframevr/aframe-website@master/examples/assets/models/phone-booth.glb"></a-asset-item>
         </a-assets>
 
         <!-- Modelo 3D del museo -->
@@ -39,9 +39,9 @@
         <a-box position="25 0 -125" width="1" height="10" depth="50" color="#ff0000" class="wall" static-body></a-box>
         <a-box position="-25 0 -125" width="1" height="10" depth="50" color="#ff0000" class="wall" static-body></a-box>
 
-        <!-- Cabina telefónica en la sala del pasado -->
+        <!-- Cabina telefónica cargada desde el archivo .glb -->
         <a-entity gltf-model="#cabina-telefonica" scale="2 2 2" position="10 0 -120" clickable>
-            <!-- Aquí podrías agregar un evento de interacción, por ejemplo -->
+            <!-- Aquí agregamos la interacción con la cabina telefónica -->
             <a-entity 
                 position="10 0 -120" 
                 geometry="primitive: box; width: 2; height: 2; depth: 2" 
@@ -52,7 +52,7 @@
                 onclick="alert('¡Estás interactuando con la cabina telefónica!');">
             </a-entity>
         </a-entity>
-
+        
     </a-scene>
 </body>
 </html>
