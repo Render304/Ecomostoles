@@ -13,13 +13,11 @@
         <a-assets>
             <a-asset-item id="museo-glb" src="museo.glb"></a-asset-item>
             <a-asset-item id="logo-glb" src="logo.glb"></a-asset-item>
-            <a-asset-item id="telefono-blend" src="telefono.blend"></a-asset-item> 
         </a-assets>
  
         <!-- Modelo 3D del museo y objetos internos -->
         <a-entity gltf-model="#museo-glb" scale="500 500 500">
             <a-entity gltf-model="#logo-glb" position="-222 6 0" scale="4 4 4" rotation="270 180 90">
-                 <a-entity gltf-model="#telefono-blend" position="40 40 0" scale="6 6 6" rotation="270 180 90"></a-entity>
         
             <!-- Luz ambiental con intensidad baja para evitar sobreiluminar las paredes -->
             <a-light type="ambient" color="#FFFFFF" intensity="0.35"></a-light>
